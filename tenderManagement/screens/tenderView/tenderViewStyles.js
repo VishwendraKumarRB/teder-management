@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   bidContainer: {
     flex: 1,
     padding: 10,
+    backgroundColor: '#4FD3DA',
   },
 
   productName: {

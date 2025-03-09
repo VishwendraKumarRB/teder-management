@@ -17,7 +17,8 @@ const App = () => {
   const navigation = useNavigation();
 
   const onPressLogin = () => {
-    navigation.navigate('Home');
+    // navigation.navigate('AllTenders');
+    navigation.navigate('UserProfile');
   };
   const onPressForgotPassword = () => {
     // Do something about forgot password operation

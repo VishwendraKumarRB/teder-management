@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { styles } from './tenderViewStyles';
 // import Modal from './Modal';
 
-const BidPage = ({ navigation }) => {
+const TenderDetails = ({ navigation }) => {
   const [visible, setVisible] = useState(false);
 
   // const toggleModal = () => setVisible(!visible);
@@ -27,4 +27,4 @@ const BidPage = ({ navigation }) => {
   );
 };
 
-export default BidPage;
+export default TenderDetails;

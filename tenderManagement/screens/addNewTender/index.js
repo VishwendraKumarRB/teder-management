@@ -1,9 +1,14 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { styles } from './addNewTenderStyles';
+import { useNavigation } from '@react-navigation/native';
 const AddNewTender = () => {
+  const navigation = useNavigation();
+  const addTenders = () => {
+    navigation.navigate('AllTenders');
+  };
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: '#4FD3DA', justifyContent: 'flex-start' }}>
       <Text style={{ fontWeight: 'bold', fontSize: 20, padding: 10 }}>Tender Name : </Text>
       <View style={styles.inputView}>
         <TextInput style={styles.inputText} placeholder="Enter Tender Name" placeholderTextColor="#003f5c" />
@@ -23,7 +28,7 @@ const AddNewTender = () => {
       </View>
       {/* </View> */}
       <Text style={{ fontWeight: 'bold', fontSize: 20, padding: 10, paddingTop: 0 }}>Buffer Time</Text>
-      <TouchableOpacity style={styles.loginBtn}>
+      <TouchableOpacity style={styles.loginBtn} onPress={addTenders}>
         <Text style={styles.loginText}>SAVE </Text>
       </TouchableOpacity>
     </View>

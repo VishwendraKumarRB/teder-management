@@ -1,39 +1,21 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const AllTenders = () => {
-  const tenderData = [
-    {
-      name: 'tender 1',
-      id: 1,
-    },
-    {
-      name: 'tender 2',
-      id: 2,
-    },
-    {
-      name: 'tender 3',
-      id: 3,
-    },
-    {
-      name: 'tender 4',
-      id: 4,
-    },
-    {
-      name: 'tender 5',
-      id: 5,
-    },
-    {
-      name: 'tender 6',
-      id: 6,
-    },
-  ];
+  const navigation = useNavigation();
+
+  const newTender = () => {
+    navigation.navigate('AddNewTender');
+  };
+  const tenderDetails = () => {
+    navigation.navigate('TenderDetails');
+  };
   return (
-    <View style={{ flex: 1, padding: 10 }}>
+    <View style={{ flex: 1, backgroundColor: '#4FD3DA', paddingVertical: 10 }}>
       <View
         style={{
           flex: 1,
-          // backgroundColor: '#fff',
           flexDirection: 'row',
           justifyContent: 'space-between',
           paddingHorizontal: 20,
@@ -42,19 +24,19 @@ const AllTenders = () => {
           borderRadius: 25,
         }}
       >
-        <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Add New Tender</Text>
+        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Add New Tender</Text>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={newTender}>
           <View
             style={{
-              height: 40,
-              width: 40,
-              borderRadius: 25,
+              height: 30,
+              width: 30,
+              borderRadius: 15,
               backgroundColor: 'green',
               justifyContent: 'center',
             }}
           >
-            <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 24 }}>+</Text>
+            <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>+</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -70,6 +52,7 @@ const AllTenders = () => {
               padding: 10,
               paddingVertical: 20,
             }}
+            onPress={tenderDetails}
           >
             <Text style={{ fontSize: 14, fontWeight: 'bold', paddingBottom: 10 }}>Tenders 1</Text>
 
@@ -85,5 +68,3 @@ const AllTenders = () => {
 };
 
 export default AllTenders;
-
-const styles = StyleSheet.create({});
