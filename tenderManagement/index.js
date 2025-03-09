@@ -17,10 +17,10 @@ const TenderManagement = () => {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
 
-        <Stack.Screen name="TenderDetails" component={TenderDetails} />
-        <Stack.Screen name="AllTenders" component={AllTenders} />
-        <Stack.Screen name="AddNewTender" component={AddNewTender} />
-        <Stack.Screen name="UserProfile" component={UserProfile} />
+        <Stack.Screen name="TenderDetails" component={TenderDetails} options={{ headerShown: false }} />
+        <Stack.Screen name="AllTenders" component={AllTenders} options={{ headerShown: false }} />
+        <Stack.Screen name="AddNewTender" component={AddNewTender} options={{ headerShown: false }} />
+        <Stack.Screen name="UserProfile" component={UserProfile} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

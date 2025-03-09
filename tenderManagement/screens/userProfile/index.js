@@ -1,10 +1,19 @@
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, TextInput, Image } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import Header from '../../component/header';
 
 const UserProfile = () => {
+  const navigation = useNavigation();
+
+  const TenderDetails = () => {
+    navigation.navigate('TenderDetails');
+  };
   return (
-    <ScrollView style={{ backgroundColor: '#4FD3DA', padding: 10, paddingBottom: 0 }}>
-      <View
+    <ScrollView style={{ backgroundColor: '#4FD3DA' }}>
+      <Header />
+
+      <TouchableOpacity
         style={{
           flex: 1,
           flexDirection: 'row',
@@ -14,7 +23,9 @@ const UserProfile = () => {
           backgroundColor: '#3AB4BA',
           borderRadius: 25,
           paddingVertical: 20,
+          margin: 5,
         }}
+        onPress={TenderDetails}
       >
         <View>
           <Text style={{ fontWeight: 'bold', fontSize: 16, paddingBottom: 15 }}>Tender Name</Text>
@@ -51,7 +62,7 @@ const UserProfile = () => {
             <Text style={{ fontWeight: 'bold', color: '#fff', fontSize: 16 }}>Submit</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
