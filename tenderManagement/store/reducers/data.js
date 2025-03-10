@@ -1,7 +1,8 @@
-import { defaultUsers } from "../dummyData";
+import { defaultUsers, defaultTenders } from "../dummyData";
 
 export const initialState = {
   users: defaultUsers,
+  tenders: defaultTenders,
   selectedUser: {},
   loginErrorMessage: "",
 };

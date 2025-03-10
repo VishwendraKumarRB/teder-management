@@ -17,10 +17,10 @@ const Stack = createNativeStackNavigator();
 const TenderManagement = () => {
   const selectedUser = useSelector(({ data }) => data.selectedUser);
 
-  const initialRouteName = isEmpty(selectedUser) ? "Login" : "AllTenders";
+  const initialRouteName = isEmpty(selectedUser) ? "AllTenders" : "AllTenders";
   return (
-    <NavigationContainer initialRouteName={initialRouteName}>
-      <Stack.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName={initialRouteName}>
         <Stack.Screen
           name="Login"
           component={Login}

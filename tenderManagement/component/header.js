@@ -5,7 +5,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useDispatch } from "react-redux";
 import { userLogout } from "../store/actions/login";
 
-const Header = () => {
+const Header = ({ noBackButton = false }) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -24,12 +24,16 @@ const Header = () => {
         marginBottom: 5,
       }}
     >
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Image
-          source={require("../assets/bckBtn.png")}
-          style={{ height: 30, width: 30 }}
-        />
-      </TouchableOpacity>
+      {noBackButton ? (
+        <View style={{ height: 30, width: 30 }} />
+      ) : (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image
+            source={require("../assets/bckBtn.png")}
+            style={{ height: 30, width: 30 }}
+          />
+        </TouchableOpacity>
+      )}
       <View style={{ flexDirection: "row" }}>
         <TouchableOpacity style={{ paddingRight: 10 }}>
           <Image

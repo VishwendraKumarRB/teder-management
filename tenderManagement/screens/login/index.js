@@ -45,7 +45,7 @@ const App = () => {
   const isDisabled = isEmpty(state.email) || isEmpty(state.password);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}> Login Screen</Text>
+      <Text style={styles.title}> Login</Text>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
