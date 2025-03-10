@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -9,16 +9,31 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-} from 'react-native';
-import { styles } from './LoginStyles';
-import { useNavigation } from '@react-navigation/native';
+} from "react-native";
+import { styles } from "./LoginStyles";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../../store/actions/login";
+import { isEmpty } from "lodash";
 
 const App = () => {
+  const errorMessage = useSelector(({ data }) => data.loginErrorMessage);
+  const dispatch = useDispatch();
+
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+  });
   const navigation = useNavigation();
 
   const onPressLogin = () => {
-    // navigation.navigate('AllTenders');
-    navigation.navigate('UserProfile');
+    dispatch(
+      userLogin({
+        email: state.email,
+        password: state.password,
+        navigateTo: (screen) => navigation.replace(screen),
+      })
+    );
   };
   const onPressForgotPassword = () => {
     // Do something about forgot password operation
@@ -26,10 +41,8 @@ const App = () => {
   const onPressSignUp = () => {
     // Do something about signup operation
   };
-  const [state, setState] = useState({
-    email: '',
-    password: '',
-  });
+
+  const isDisabled = isEmpty(state.email) || isEmpty(state.password);
   return (
     <View style={styles.container}>
       <Text style={styles.title}> Login Screen</Text>
@@ -38,7 +51,7 @@ const App = () => {
           style={styles.inputText}
           placeholder="Email"
           placeholderTextColor="#003f5c"
-          onChangeText={(text) => setState({ email: text })}
+          onChangeText={(text) => setState({ ...state, email: text })}
         />
       </View>
       <View style={styles.inputView}>
@@ -47,13 +60,21 @@ const App = () => {
           secureTextEntry
           placeholder="Password"
           placeholderTextColor="#003f5c"
-          onChangeText={(text) => setState({ password: text })}
+          onChangeText={(text) => setState({ ...state, password: text })}
         />
       </View>
+      <Text style={styles.errorMsg}>{errorMessage}</Text>
       <TouchableOpacity onPress={onPressForgotPassword}>
         <Text style={styles.forgotAndSignUpText}>Forgot Password?</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={onPressLogin} style={styles.loginBtn}>
+      <TouchableOpacity
+        disabled={isDisabled}
+        onPress={onPressLogin}
+        style={[
+          styles.loginBtn,
+          { backgroundColor: isDisabled ? "gray" : "#fb5b5a" },
+        ]}
+      >
         <Text style={styles.loginText}>LOGIN </Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={onPressSignUp}>

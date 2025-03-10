@@ -1,26 +1,51 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React from "react";
+import { View, Text } from "react-native";
 
-import Login from './screens/login/index';
-import AllTenders from './screens/allTenders';
-import AddNewTender from './screens/addNewTender';
+import Login from "./screens/login/index";
+import AllTenders from "./screens/allTenders";
+import AddNewTender from "./screens/addNewTender";
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TenderDetails from './screens/tenderView/index';
-import UserProfile from './screens/userProfile';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import TenderDetails from "./screens/tenderView/index";
+import UserProfile from "./screens/userProfile";
+import { useSelector } from "react-redux";
+import { isEmpty } from "lodash";
 
 const Stack = createNativeStackNavigator();
-const TenderManagement = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
 
-        <Stack.Screen name="TenderDetails" component={TenderDetails} options={{ headerShown: false }} />
-        <Stack.Screen name="AllTenders" component={AllTenders} options={{ headerShown: false }} />
-        <Stack.Screen name="AddNewTender" component={AddNewTender} options={{ headerShown: false }} />
-        <Stack.Screen name="UserProfile" component={UserProfile} options={{ headerShown: false }} />
+const TenderManagement = () => {
+  const selectedUser = useSelector(({ data }) => data.selectedUser);
+
+  const initialRouteName = isEmpty(selectedUser) ? "Login" : "AllTenders";
+  return (
+    <NavigationContainer initialRouteName={initialRouteName}>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TenderDetails"
+          component={TenderDetails}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AllTenders"
+          component={AllTenders}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AddNewTender"
+          component={AddNewTender}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="UserProfile"
+          component={UserProfile}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
